@@ -5,6 +5,8 @@ import {
   FormControl,
   Input,
   Button,
+  FormHelperText,
+  Center,
 } from "@chakra-ui/react";
 
 export type SearchFormFields = {
@@ -18,13 +20,14 @@ const SearchBar = () => {
     formState: { errors, isSubmitting },
   } = useForm<SearchFormFields>();
 
-  const onSubmit: SubmitHandler<SearchFormFields> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<SearchFormFields> = (data) =>
+    console.log(data.keywords);
 
   return (
-    <div>
+    <Center>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl isInvalid={errors.keywords ? true : undefined}>
-          <FormLabel htmlFor="name">Keywords</FormLabel>
+          <FormLabel htmlFor="keywords">Keywords</FormLabel>
           <Input
             id="keywords"
             placeholder="keywords"
@@ -32,6 +35,7 @@ const SearchBar = () => {
               required: "This is required",
             })}
           />
+          <FormHelperText>e.g., Best restaurants in NYC</FormHelperText>
           <FormErrorMessage>
             {errors.keywords && errors.keywords.message}
           </FormErrorMessage>
@@ -42,10 +46,10 @@ const SearchBar = () => {
           isLoading={isSubmitting}
           type="submit"
         >
-          Submit
+          Search
         </Button>
       </form>
-    </div>
+    </Center>
   );
 };
 

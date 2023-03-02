@@ -1,4 +1,5 @@
 import { Grid, GridItem } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 interface Props {
   video: object;
@@ -12,6 +13,10 @@ interface Video {
 }
 
 const Media: React.FC<Props> = ({ video }) => {
+  useEffect(() => {
+    console.log("hey I am checking in Media component");
+  }, [video]);
+
   const { snippet }: Video = video;
   return (
     <div>

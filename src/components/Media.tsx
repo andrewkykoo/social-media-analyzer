@@ -35,20 +35,20 @@ const Media: React.FC<Props> = ({ video }) => {
 
   const { snippet, statistics }: VideoInfo = singleVideo;
 
-  useEffect(() => {
-    const fetchVideoDetails = async () => {
-      const response = await youtube.get("/videos", {
-        //*: for future features: use publishedBefore, publishedAfter params to filter most recent videos
-        params: {
-          id: id?.videoId,
-          part: "snippet, statistics",
-        },
-      });
-      setSingleVideo(response.data.items[0]);
-      console.log(singleVideo);
-    };
-    fetchVideoDetails();
-  }, [video]);
+  // useEffect(() => {
+  //   const fetchVideoDetails = async () => {
+  //     const response = await youtube.get("/videos", {
+  //       //*: for future features: use publishedBefore, publishedAfter params to filter most recent videos
+  //       params: {
+  //         id: id?.videoId,
+  //         part: "snippet, statistics",
+  //       },
+  //     });
+  //     setSingleVideo(response.data.items[0]);
+  //     console.log(singleVideo);
+  //   };
+  //   fetchVideoDetails();
+  // }, [video]);
 
   return (
     <div>

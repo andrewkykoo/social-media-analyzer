@@ -8,6 +8,5 @@ export default axios.create({
     part: "snippet",
     maxResults: 3,
     key: KEY,
-    order: "viewCount",
   },
 });

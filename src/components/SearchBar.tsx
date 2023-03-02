@@ -32,9 +32,9 @@ const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
     const response = await youtube.get("/search", {
       params: {
         q: data.keywords,
+        order: "viewCount",
       },
     });
-    console.log(response.data);
     setVideos(response.data.items);
   };
 

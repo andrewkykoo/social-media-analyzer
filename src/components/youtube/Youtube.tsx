@@ -7,7 +7,6 @@ interface Props {
 }
 
 const Youtube: React.FC<Props> = ({ keywords, videos }) => {
-  console.log("Youtube component: ", videos);
   return (
     <div>
       <h1>Youtube</h1>

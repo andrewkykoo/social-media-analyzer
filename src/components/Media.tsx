@@ -1,18 +1,55 @@
 import { Grid, GridItem } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import youtube from "./apis/youtube";
 
 interface Props {
   video: object;
 }
 
-interface Video {
+interface VideoId {
+  id?: {
+    videoId?: string;
+  };
+}
+
+interface VideoInfo {
   snippet?: {
-    title?: string;
-    channelTitle?: string;
+    title: string;
+    channelTitle: string;
+    publishedAt: Date;
+    tags: string[];
+  };
+  statistics?: {
+    viewCount: number;
+    likeCount: number;
+    favoriteCount: number;
+    commentCount: number;
   };
 }
 
 const Media: React.FC<Props> = ({ video }) => {
-  const { snippet }: Video = video;
+  const [singleVideo, setSingleVideo] = useState({});
+  const { id }: VideoId = video;
+
+  //todo: destructure response.data.items[0] - snippet & statistics
+
+  const { snippet, statistics }: VideoInfo = singleVideo;
+
+  useEffect(() => {
+    const fetchVideoDetails = async () => {
+      const response = await youtube.get("/videos", {
+        //*: for future features: use publishedBefore, publishedAfter params to filter most recent videos
+        params: {
+          id: id?.videoId,
+          part: "snippet, statistics",
+        },
+      });
+      setSingleVideo(response.data.items[0]);
+      console.log(singleVideo);
+    };
+    fetchVideoDetails();
+  }, [video]);
+
   return (
     <div>
       <Grid
@@ -30,10 +67,11 @@ const Media: React.FC<Props> = ({ video }) => {
           Title: {snippet?.title} || Channel: {snippet?.channelTitle}
         </GridItem>
         <GridItem pl="2" bg="pink.300" area={"nav"}>
-          TAGS: #pop #swag #top10
+          TAGS: #pop #swag #top10 {snippet?.tags[0]}
         </GridItem>
         <GridItem pl="2" bg="green.300" area={"main"}>
-          Analytics: View Counts, Publish date, etc.
+          Analytics: View Counts, Publish date, etc. || Publish Date:
+          {snippet?.publishedAt.toString()}
         </GridItem>
         <GridItem pl="2" bg="blue.300" area={"footer"}>
           Footer

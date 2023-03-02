@@ -6,7 +6,7 @@ export default axios.create({
   baseURL: YOUTUBE_SEARCH_API,
   params: {
     part: "snippet",
-    maxResults: 3,
+    maxResults: 1,
     key: KEY,
   },
 });

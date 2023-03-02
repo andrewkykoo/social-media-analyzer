@@ -8,20 +8,35 @@ import {
   FormHelperText,
   Center,
 } from "@chakra-ui/react";
+import React from "react";
+import youtube from "./apis/youtube";
 
-export type SearchFormFields = {
+type Inputs = {
   keywords: string;
 };
 
-const SearchBar = () => {
+interface Props {
+  setKeywords: React.Dispatch<React.SetStateAction<string | null>>;
+  setVideos: React.Dispatch<React.SetStateAction<object[] | null>>;
+}
+
+const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
-  } = useForm<SearchFormFields>();
+  } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<SearchFormFields> = (data) =>
-    console.log(data.keywords);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setKeywords(data.keywords);
+    const response = await youtube.get("/search", {
+      params: {
+        q: data.keywords,
+      },
+    });
+    console.log(response.data);
+    setVideos(response.data.items);
+  };
 
   return (
     <Center>

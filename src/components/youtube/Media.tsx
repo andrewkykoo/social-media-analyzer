@@ -85,7 +85,7 @@ const Media: React.FC<Props> = ({ video }) => {
 
       {/* Stats */}
       <Box m={5} borderColor="gray.500" borderWidth="2px">
-        <StatGroup mt={1}>
+        <StatGroup m={5}>
           <Wrap spacing="25px">
             <WrapItem>
               <Stat>
@@ -99,10 +99,10 @@ const Media: React.FC<Props> = ({ video }) => {
                   </Tooltip>
                 </HStack>
                 <StatNumber>345,670</StatNumber>
-                <StatHelpText>
+                {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%
-                </StatHelpText>
+                </StatHelpText> */}
               </Stat>
             </WrapItem>
 
@@ -118,10 +118,10 @@ const Media: React.FC<Props> = ({ video }) => {
                   </Tooltip>
                 </HStack>
                 <StatNumber>45</StatNumber>
-                <StatHelpText>
+                {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%
-                </StatHelpText>
+                </StatHelpText> */}
               </Stat>
             </WrapItem>
 
@@ -137,10 +137,10 @@ const Media: React.FC<Props> = ({ video }) => {
                   </Tooltip>
                 </HStack>
                 <StatNumber>45</StatNumber>
-                <StatHelpText>
+                {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%
-                </StatHelpText>
+                </StatHelpText> */}
               </Stat>
             </WrapItem>
 
@@ -156,10 +156,10 @@ const Media: React.FC<Props> = ({ video }) => {
                   </Tooltip>
                 </HStack>
                 <StatNumber>2.5</StatNumber>
-                <StatHelpText>
+                {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%
-                </StatHelpText>
+                </StatHelpText> */}
               </Stat>
             </WrapItem>
           </Wrap>

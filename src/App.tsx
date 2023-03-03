@@ -1,8 +1,8 @@
-import React from "react";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Box, Center, Heading } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import Youtube from "./components/youtube/Youtube";
+import Footer from "./components/Footer";
 
 function App() {
   const [keywords, setKeywords] = useState<string | null>("");
@@ -10,12 +10,21 @@ function App() {
 
   return (
     <ChakraProvider>
-      <div>
-        <h1>Social Media Analyzer</h1>
-        <p>keywords: {keywords}</p>
-        <SearchBar setKeywords={setKeywords} setVideos={setVideos} />
-        <Youtube keywords={keywords} videos={videos} />
-      </div>
+      <Box bg="gray.800" h="calc(100vh)" overflow="scroll">
+        <Center>
+          <Box mt={10}>
+            <Heading size="3xl" color="white">
+              Social Media Analyzer
+            </Heading>
+            <SearchBar setKeywords={setKeywords} setVideos={setVideos} />
+            {/* Add ChatGPT */}
+          </Box>
+        </Center>
+        <Box p={10}>
+          <Youtube keywords={keywords} videos={videos} />
+        </Box>
+        <Footer />
+      </Box>
     </ChakraProvider>
   );
 }

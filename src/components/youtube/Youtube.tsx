@@ -1,5 +1,6 @@
-import MediaList from "../MediaList";
+import MediaList from "./MediaList";
 import React from "react";
+import { Center, VStack } from "@chakra-ui/react";
 
 interface Props {
   keywords: string | null;
@@ -8,11 +9,11 @@ interface Props {
 
 const Youtube: React.FC<Props> = ({ keywords, videos }) => {
   return (
-    <div>
-      <h1>Youtube</h1>
-      <p>{keywords}</p>
-      <MediaList videos={videos} />
-    </div>
+    <Center>
+      <VStack>
+        <MediaList videos={videos} />
+      </VStack>
+    </Center>
   );
 };
 

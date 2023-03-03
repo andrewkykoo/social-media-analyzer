@@ -1,8 +1,8 @@
-import React from "react";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Box, Center, Heading, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import Youtube from "./components/youtube/Youtube";
+import Instagram from "./components/instagram/Instagram";
 
 function App() {
   const [keywords, setKeywords] = useState<string | null>("");
@@ -10,12 +10,19 @@ function App() {
 
   return (
     <ChakraProvider>
-      <div>
-        <h1>Social Media Analyzer</h1>
-        <p>keywords: {keywords}</p>
-        <SearchBar setKeywords={setKeywords} setVideos={setVideos} />
+      <Box m={10} minW="320px" maxW="2560px">
+        <Center>
+          <VStack>
+            <Heading size="3xl">Social Media Analyzer</Heading>
+            <SearchBar setKeywords={setKeywords} setVideos={setVideos} />
+          </VStack>
+        </Center>
+
         <Youtube keywords={keywords} videos={videos} />
-      </div>
+        <Youtube keywords={keywords} videos={videos} />
+      </Box>
+
+      {/* Add ChatGPT */}
     </ChakraProvider>
   );
 }

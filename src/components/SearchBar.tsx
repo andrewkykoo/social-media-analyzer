@@ -6,7 +6,7 @@ import {
   Input,
   Button,
   FormHelperText,
-  Center,
+  Box,
 } from "@chakra-ui/react";
 import React from "react";
 import youtube from "./apis/youtube";
@@ -39,7 +39,7 @@ const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
   };
 
   return (
-    <Center>
+    <Box minW="320px">
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl isInvalid={errors.keywords ? true : undefined}>
           <FormLabel htmlFor="keywords">Keywords</FormLabel>
@@ -64,7 +64,7 @@ const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
           Search
         </Button>
       </form>
-    </Center>
+    </Box>
   );
 };
 

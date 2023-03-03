@@ -7,6 +7,7 @@ import {
   Button,
   FormHelperText,
   Box,
+  Center,
 } from "@chakra-ui/react";
 import React from "react";
 import youtube from "./apis/youtube";
@@ -39,32 +40,34 @@ const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
   };
 
   return (
-    <Box minW="320px">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl isInvalid={errors.keywords ? true : undefined}>
-          <FormLabel htmlFor="keywords">Keywords</FormLabel>
-          <Input
-            id="keywords"
-            placeholder="keywords"
-            {...register("keywords", {
-              required: "This is required",
-            })}
-          />
-          <FormHelperText>e.g., Best restaurants in NYC</FormHelperText>
-          <FormErrorMessage>
-            {errors.keywords && errors.keywords.message}
-          </FormErrorMessage>
-        </FormControl>
-        <Button
-          mt={4}
-          colorScheme="teal"
-          isLoading={isSubmitting}
-          type="submit"
-        >
-          Search
-        </Button>
-      </form>
-    </Box>
+    <Center>
+      <Box w="300px" m={10}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FormControl isInvalid={errors.keywords ? true : undefined}>
+            <FormLabel htmlFor="keywords">Keywords</FormLabel>
+            <Input
+              id="keywords"
+              placeholder="keywords"
+              {...register("keywords", {
+                required: "This is required",
+              })}
+            />
+            <FormHelperText>e.g., Best restaurants in NYC</FormHelperText>
+            <FormErrorMessage>
+              {errors.keywords && errors.keywords.message}
+            </FormErrorMessage>
+          </FormControl>
+          <Button
+            mt={4}
+            colorScheme="teal"
+            isLoading={isSubmitting}
+            type="submit"
+          >
+            Search
+          </Button>
+        </form>
+      </Box>
+    </Center>
   );
 };
 

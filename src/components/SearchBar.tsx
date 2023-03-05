@@ -46,6 +46,7 @@ const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
           <FormControl isInvalid={errors.keywords ? true : undefined}>
             <FormLabel htmlFor="keywords">Keywords</FormLabel>
             <Input
+              color="white"
               id="keywords"
               placeholder="keywords"
               {...register("keywords", {

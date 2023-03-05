@@ -10,11 +10,13 @@ const MediaList: React.FC<Props> = ({ videos }) => {
   return (
     <Box mt={5}>
       <Wrap justify="center" spacing="30px">
-        {/* {videos &&
-        videos.map((video: object, index: number) => (
-          <Media key={index} video={video} />
-        ))} */}
-        <WrapItem>
+        {videos &&
+          videos.map((video: object, index: number) => (
+            <WrapItem>
+              <Media key={index} video={video} />
+            </WrapItem>
+          ))}
+        {/* <WrapItem>
           <Media video={coolVideo} />
         </WrapItem>
         <WrapItem>
@@ -22,7 +24,7 @@ const MediaList: React.FC<Props> = ({ videos }) => {
         </WrapItem>
         <WrapItem>
           <Media video={coolVideo} />
-        </WrapItem>
+        </WrapItem> */}
       </Wrap>
     </Box>
   );

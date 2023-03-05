@@ -46,25 +46,20 @@ interface VideoInfo {
 const Media: React.FC<Props> = ({ video }) => {
   const [singleVideo, setSingleVideo] = useState({});
   const { id }: VideoId = video;
-
-  //todo: destructure response.data.items[0] - snippet & statistics
-
   const { snippet, statistics }: VideoInfo = singleVideo;
 
-  // useEffect(() => {
-  //   const fetchVideoDetails = async () => {
-  //     const response = await youtube.get("/videos", {
-  //       //*: for future features: use publishedBefore, publishedAfter params to filter most recent videos
-  //       params: {
-  //         id: id?.videoId,
-  //         part: "snippet, statistics",
-  //       },
-  //     });
-  //     setSingleVideo(response.data.items[0]);
-  //     console.log(singleVideo);
-  //   };
-  //   fetchVideoDetails();
-  // }, [video]);
+  useEffect(() => {
+    const fetchVideoDetails = async () => {
+      const response = await youtube.get("/videos", {
+        params: {
+          id: id?.videoId,
+          part: "snippet, statistics",
+        },
+      });
+      setSingleVideo(response.data.items[0]);
+    };
+    fetchVideoDetails();
+  }, [video]);
 
   return (
     <Box bg="gray.600" maxW="500px" borderRadius="md" color="white">
@@ -72,15 +67,13 @@ const Media: React.FC<Props> = ({ video }) => {
       <Box m={5}>
         <Wrap>
           <WrapItem>
-            <Heading size="lg">
-              Best restaurants in NYC Best restaurants in NYC
-            </Heading>
+            <Heading size="lg">{snippet?.title}</Heading>
           </WrapItem>
         </Wrap>
 
-        <Text fontSize="2xl">Eater</Text>
-        <Text>Link to the video</Text>
-        <Text>Published on 2/5/2021</Text>
+        <Text fontSize="2xl">{snippet?.channelTitle}</Text>
+        <Text>{id?.videoId}</Text>
+        <Text>Published on {snippet?.publishedAt.toString()}</Text>
       </Box>
 
       {/* Stats */}
@@ -98,7 +91,7 @@ const Media: React.FC<Props> = ({ video }) => {
                     <InfoOutlineIcon />
                   </Tooltip>
                 </HStack>
-                <StatNumber>345,670</StatNumber>
+                <StatNumber>{statistics?.viewCount}</StatNumber>
                 {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%
@@ -117,7 +110,7 @@ const Media: React.FC<Props> = ({ video }) => {
                     <InfoOutlineIcon />
                   </Tooltip>
                 </HStack>
-                <StatNumber>45</StatNumber>
+                <StatNumber>{statistics?.likeCount}</StatNumber>
                 {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%
@@ -136,7 +129,7 @@ const Media: React.FC<Props> = ({ video }) => {
                     <InfoOutlineIcon />
                   </Tooltip>
                 </HStack>
-                <StatNumber>45</StatNumber>
+                <StatNumber>{statistics?.commentCount}</StatNumber>
                 {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%
@@ -170,7 +163,12 @@ const Media: React.FC<Props> = ({ video }) => {
       <Box m={5}>
         <Heading fontSize="xl">Tags/Keywords</Heading>
         <Wrap spacing={2} mt={2}>
-          <WrapItem>
+          {snippet?.tags.map((tag, index) => (
+            <WrapItem>
+              <Tag key={index}>#{tag}</Tag>
+            </WrapItem>
+          ))}
+          {/* <WrapItem>
             <Tag>#nikephantomgxelitefg</Tag>
           </WrapItem>
           <WrapItem>
@@ -184,7 +182,7 @@ const Media: React.FC<Props> = ({ video }) => {
           </WrapItem>
           <WrapItem>
             <Tag>#nikephantomgxelitefg</Tag>
-          </WrapItem>
+          </WrapItem> */}
         </Wrap>
       </Box>
     </Box>

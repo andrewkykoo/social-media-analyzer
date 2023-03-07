@@ -9,11 +9,15 @@ interface Props {
 
 const Youtube: React.FC<Props> = ({ keywords, videos }) => {
   return (
-    <Box mt={20}>
-      <Center>
-        <Heading color="white">Youtube - Top 3 videos sorted by views</Heading>
-      </Center>
-      <MediaList videos={videos} />
+    <Box mt={1}>
+      {keywords && (
+        <>
+          <Center>
+            <Heading color="white">Top 3 Youtube contents</Heading>
+          </Center>
+          <MediaList videos={videos} />
+        </>
+      )}
     </Box>
   );
 };

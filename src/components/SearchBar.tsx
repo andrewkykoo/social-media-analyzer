@@ -61,7 +61,7 @@ const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
           </FormControl>
           <Button
             mt={4}
-            colorScheme="teal"
+            colorScheme="gray"
             isLoading={isSubmitting}
             type="submit"
           >

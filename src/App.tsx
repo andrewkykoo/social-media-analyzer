@@ -10,7 +10,7 @@ function App() {
 
   return (
     <ChakraProvider>
-      <Box bg="gray.800" h="calc(100vh)" overflow="scroll">
+      <Box bg="gray.800" h="calc(100vh)" overflow="auto">
         <Center>
           <Box mt={10}>
             <Heading size="3xl" color="white">
@@ -23,7 +23,9 @@ function App() {
         <Box p={10}>
           <Youtube keywords={keywords} videos={videos} />
         </Box>
-        <Footer />
+        <Box mt={5} width="100%">
+          <Footer />
+        </Box>
       </Box>
     </ChakraProvider>
   );

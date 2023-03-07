@@ -14,10 +14,11 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
-import { InfoOutlineIcon } from "@chakra-ui/icons";
+import { InfoOutlineIcon, NotAllowedIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 import youtube from "../apis/youtube";
 import { formatCount } from "../../utils/kFormatter";
+import { ageCalculator } from "../../utils/ageCalculator";
 
 interface Props {
   video: object;
@@ -58,6 +59,7 @@ const Media: React.FC<Props> = ({ video }) => {
         },
       });
       setSingleVideo(response.data.items[0]);
+      console.log(response.data.items[0]);
     };
     fetchVideoDetails();
   }, [video]);
@@ -149,7 +151,7 @@ const Media: React.FC<Props> = ({ video }) => {
                     <InfoOutlineIcon />
                   </Tooltip>
                 </HStack>
-                <StatNumber>2.5</StatNumber>
+                <StatNumber>{ageCalculator(snippet?.publishedAt)}</StatNumber>
                 {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%
@@ -162,14 +164,28 @@ const Media: React.FC<Props> = ({ video }) => {
 
       {/* Tags/Keywords */}
       <Box m={5}>
-        <Heading fontSize="xl">Tags/Keywords</Heading>
-        <Wrap spacing={2} mt={2}>
-          {snippet?.tags.map((tag, index) => (
-            <WrapItem key={index}>
-              <Tag>#{tag}</Tag>
-            </WrapItem>
-          ))}
-        </Wrap>
+        <HStack>
+          <Heading fontSize="xl">Tags/Keywords</Heading>
+          <Tooltip
+            placement="top"
+            label="Some contents are missing tags/keywords."
+          >
+            <InfoOutlineIcon />
+          </Tooltip>
+        </HStack>
+        {snippet?.tags ? (
+          <Wrap spacing={2} mt={2}>
+            {snippet?.tags.map((tag, index) => (
+              <WrapItem key={index}>
+                <Tag>#{tag}</Tag>
+              </WrapItem>
+            ))}
+          </Wrap>
+        ) : (
+          <Box mt={2}>
+            <NotAllowedIcon />
+          </Box>
+        )}
       </Box>
     </Box>
   );

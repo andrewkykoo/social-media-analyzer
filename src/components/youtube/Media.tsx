@@ -17,7 +17,7 @@ import {
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 import youtube from "../apis/youtube";
-import { intToString } from "../../utils/kFormatter";
+import { formatCount } from "../../utils/kFormatter";
 
 interface Props {
   video: object;
@@ -92,7 +92,7 @@ const Media: React.FC<Props> = ({ video }) => {
                     <InfoOutlineIcon />
                   </Tooltip>
                 </HStack>
-                <StatNumber>{intToString(statistics?.viewCount)}</StatNumber>
+                <StatNumber>{formatCount(statistics?.viewCount)}</StatNumber>
                 {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%
@@ -111,7 +111,7 @@ const Media: React.FC<Props> = ({ video }) => {
                     <InfoOutlineIcon />
                   </Tooltip>
                 </HStack>
-                <StatNumber>{intToString(statistics?.likeCount)}</StatNumber>
+                <StatNumber>{formatCount(statistics?.likeCount)}</StatNumber>
                 {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%
@@ -130,7 +130,7 @@ const Media: React.FC<Props> = ({ video }) => {
                     <InfoOutlineIcon />
                   </Tooltip>
                 </HStack>
-                <StatNumber>{intToString(statistics?.commentCount)}</StatNumber>
+                <StatNumber>{formatCount(statistics?.commentCount)}</StatNumber>
                 {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%

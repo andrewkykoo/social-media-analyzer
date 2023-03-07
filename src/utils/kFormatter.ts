@@ -1,21 +1,21 @@
-// export const kFormatter = (
-//   numInString: undefined | number
-// ): string | number => {
-//   const num = Number(numInString);
-//   return Math.abs(num) > 999
-//     ? Math.sign(num) * Math.round(Math.abs(num / 100) / 10) + "k"
-//     : Math.sign(num) * Math.abs(num);
-// };
+const COUNT_ABBRS = ["", "K", "M", "G", "T", "P", "E", "Z", "Y"];
 
-export const intToString = (numInString: undefined | number) => {
-  const value = Number(numInString);
-  const suffixes = ["", "k", "m", "b", "t"];
-  const suffixNum = Math.floor(("" + value).length / 3);
-  let shortValue: number | string = parseFloat(
-    (suffixNum != 0 ? value / Math.pow(1000, suffixNum) : value).toPrecision(2)
+export const formatCount = (
+  count: number | undefined,
+  withAbbr = true,
+  decimals = 0
+) => {
+  if (!count) return;
+
+  const i = 0 === count ? count : Math.floor(Math.log(count) / Math.log(1000));
+
+  let result: number | string = parseFloat(
+    (count / Math.pow(1000, i)).toFixed(decimals)
   );
-  if (shortValue % 1 != 0) {
-    shortValue = shortValue.toFixed(1);
+
+  if (withAbbr) {
+    result = result.toString();
+    result += `${COUNT_ABBRS[i]}`;
   }
-  return shortValue + suffixes[suffixNum];
+  return result;
 };

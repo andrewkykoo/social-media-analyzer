@@ -17,6 +17,7 @@ import {
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 import youtube from "../apis/youtube";
+import { formatCount } from "../../utils/kFormatter";
 
 interface Props {
   video: object;
@@ -91,7 +92,7 @@ const Media: React.FC<Props> = ({ video }) => {
                     <InfoOutlineIcon />
                   </Tooltip>
                 </HStack>
-                <StatNumber>{statistics?.viewCount}</StatNumber>
+                <StatNumber>{formatCount(statistics?.viewCount)}</StatNumber>
                 {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%
@@ -110,7 +111,7 @@ const Media: React.FC<Props> = ({ video }) => {
                     <InfoOutlineIcon />
                   </Tooltip>
                 </HStack>
-                <StatNumber>{statistics?.likeCount}</StatNumber>
+                <StatNumber>{formatCount(statistics?.likeCount)}</StatNumber>
                 {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%
@@ -129,7 +130,7 @@ const Media: React.FC<Props> = ({ video }) => {
                     <InfoOutlineIcon />
                   </Tooltip>
                 </HStack>
-                <StatNumber>{statistics?.commentCount}</StatNumber>
+                <StatNumber>{formatCount(statistics?.commentCount)}</StatNumber>
                 {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%
@@ -164,25 +165,10 @@ const Media: React.FC<Props> = ({ video }) => {
         <Heading fontSize="xl">Tags/Keywords</Heading>
         <Wrap spacing={2} mt={2}>
           {snippet?.tags.map((tag, index) => (
-            <WrapItem>
-              <Tag key={index}>#{tag}</Tag>
+            <WrapItem key={index}>
+              <Tag>#{tag}</Tag>
             </WrapItem>
           ))}
-          {/* <WrapItem>
-            <Tag>#nikephantomgxelitefg</Tag>
-          </WrapItem>
-          <WrapItem>
-            <Tag>#nike</Tag>
-          </WrapItem>
-          <WrapItem>
-            <Tag>#nikepha</Tag>
-          </WrapItem>
-          <WrapItem>
-            <Tag>#1</Tag>
-          </WrapItem>
-          <WrapItem>
-            <Tag>#nikephantomgxelitefg</Tag>
-          </WrapItem> */}
         </Wrap>
       </Box>
     </Box>

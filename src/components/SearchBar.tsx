@@ -34,6 +34,7 @@ const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
       params: {
         q: data.keywords,
         order: "viewCount",
+        relevanceLanguage: "en",
       },
     });
     setVideos(response.data.items);

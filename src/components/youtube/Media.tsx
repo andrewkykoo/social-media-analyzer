@@ -59,7 +59,6 @@ const Media: React.FC<Props> = ({ video }) => {
         },
       });
       setSingleVideo(response.data.items[0]);
-      console.log(response.data.items[0]);
     };
     fetchVideoDetails();
   }, [video]);
@@ -113,7 +112,13 @@ const Media: React.FC<Props> = ({ video }) => {
                     <InfoOutlineIcon />
                   </Tooltip>
                 </HStack>
-                <StatNumber>{formatCount(statistics?.likeCount)}</StatNumber>
+                <StatNumber>
+                  {statistics?.likeCount.toString() === "0" ? (
+                    <NotAllowedIcon />
+                  ) : (
+                    formatCount(statistics?.likeCount)
+                  )}
+                </StatNumber>
                 {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%
@@ -132,7 +137,13 @@ const Media: React.FC<Props> = ({ video }) => {
                     <InfoOutlineIcon />
                   </Tooltip>
                 </HStack>
-                <StatNumber>{formatCount(statistics?.commentCount)}</StatNumber>
+                <StatNumber>
+                  {statistics?.commentCount.toString() === "0" ? (
+                    <NotAllowedIcon />
+                  ) : (
+                    formatCount(statistics?.commentCount)
+                  )}
+                </StatNumber>
                 {/* <StatHelpText>
                   <StatArrow type="decrease" />
                   9.05%

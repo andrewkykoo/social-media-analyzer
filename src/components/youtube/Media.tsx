@@ -81,7 +81,9 @@ const Media: React.FC<Props> = ({ video }) => {
         >
           Click to view
         </Link>
-        <Text>Published on {snippet?.publishedAt.toString()}</Text>
+        <Text>
+          Published on {snippet?.publishedAt.toString().substring(0, 10)}
+        </Text>
       </Box>
 
       {/* Stats */}

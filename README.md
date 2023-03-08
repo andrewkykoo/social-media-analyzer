@@ -1,10 +1,12 @@
 # Social Media Analyzer (SMA)
 
 ### Goals
-- Help users (marketing analysts, entrepreneurs, business owners, etc) find social media contents in which they can promote/advertise their products and services
+
+- Help users (marketing analysts, entrepreneurs, business owners, startups, etc.) find social media contents in which they can promote/advertise their products and services
 - SMA uses the user's search terms to identify and share three most viewed contents
 
 ### Upcoming Features
+
 - TikTok
 - Instagram
 - ChatGPT to provide assistance with finding keywords/search terms

@@ -115,7 +115,7 @@ const Media: React.FC<Props> = ({ video }) => {
                   <StatLabel>Likes</StatLabel>
                   <Tooltip
                     placement="top"
-                    label="The number of users who have indicated that they liked the video."
+                    label="The number of users who have indicated that they liked the video"
                   >
                     <InfoOutlineIcon />
                   </Tooltip>
@@ -140,7 +140,7 @@ const Media: React.FC<Props> = ({ video }) => {
                   <StatLabel>Comments</StatLabel>
                   <Tooltip
                     placement="top"
-                    label="The number of comments for the video."
+                    label="The number of comments for the video"
                   >
                     <InfoOutlineIcon />
                   </Tooltip>
@@ -165,7 +165,7 @@ const Media: React.FC<Props> = ({ video }) => {
                   <StatLabel>Age</StatLabel>
                   <Tooltip
                     placement="top"
-                    label="The number of months since the published date."
+                    label="Time passed since the published date"
                   >
                     <InfoOutlineIcon />
                   </Tooltip>
@@ -187,7 +187,7 @@ const Media: React.FC<Props> = ({ video }) => {
           <Heading fontSize="xl">Tags/Keywords</Heading>
           <Tooltip
             placement="top"
-            label="Some contents are missing tags/keywords."
+            label="Some contents may not have tags/keywords."
           >
             <InfoOutlineIcon />
           </Tooltip>

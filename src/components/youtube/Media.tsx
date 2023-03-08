@@ -2,6 +2,7 @@ import {
   Box,
   Heading,
   HStack,
+  Link,
   Stat,
   StatArrow,
   StatGroup,
@@ -74,8 +75,15 @@ const Media: React.FC<Props> = ({ video }) => {
         </Wrap>
 
         <Text fontSize="2xl">{snippet?.channelTitle}</Text>
-        <Text>{id?.videoId}</Text>
-        <Text>Published on {snippet?.publishedAt.toString()}</Text>
+        <Link
+          href={`https://www.youtube.com/watch?v=${id?.videoId}`}
+          isExternal
+        >
+          Click to view
+        </Link>
+        <Text>
+          Published on {snippet?.publishedAt.toString().substring(0, 10)}
+        </Text>
       </Box>
 
       {/* Stats */}

@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import youtube from "../apis/youtube";
 import { formatCount } from "../../utils/kFormatter";
 import { ageCalculator } from "../../utils/ageCalculator";
+import { showNchars } from "../../utils/showNchars";
 
 interface Props {
   video: object;
@@ -36,6 +37,7 @@ interface VideoInfo {
   snippet?: {
     title: string;
     channelTitle: string;
+    description: string;
     publishedAt: Date;
     tags: string[];
   };
@@ -60,6 +62,7 @@ const Media: React.FC<Props> = ({ video }) => {
         },
       });
       setSingleVideo(response.data.items[0]);
+      console.log(singleVideo);
     };
     fetchVideoDetails();
   }, [video]);
@@ -83,6 +86,20 @@ const Media: React.FC<Props> = ({ video }) => {
         </Link>
         <Text>
           Published on {snippet?.publishedAt.toString().substring(0, 10)}
+        </Text>
+      </Box>
+
+      {/* Description */}
+      <Box m={5}>
+        <Heading size="sm">Description:</Heading>
+        <Text>
+          {showNchars(snippet?.description)}
+          <Link
+            href={`https://www.youtube.com/watch?v=${id?.videoId}`}
+            isExternal
+          >
+            ...
+          </Link>
         </Text>
       </Box>
 

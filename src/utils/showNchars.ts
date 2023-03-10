@@ -1,6 +1,6 @@
 export const showNchars = (str: string | undefined) => {
   if (!str) return;
-  let shortenedStr = str.substring(0, 100);
+  let shortenedStr = str.substring(0, 200);
   /*
   "merc v" -> "merc"
   "merc vapo" -> "merc"

@@ -8,6 +8,9 @@ import {
   FormHelperText,
   Box,
   Center,
+  HStack,
+  Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
 import youtube from "./apis/youtube";
@@ -27,6 +30,8 @@ const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
     register,
     formState: { errors, isSubmitting },
   } = useForm<Inputs>();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setKeywords(data.keywords);
@@ -59,14 +64,14 @@ const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
               {errors.keywords && errors.keywords.message}
             </FormErrorMessage>
           </FormControl>
-          <Button
-            mt={4}
-            colorScheme="gray"
-            isLoading={isSubmitting}
-            type="submit"
-          >
-            Search
-          </Button>
+          <HStack mt={4}>
+            <Button colorScheme="gray" isLoading={isSubmitting} type="submit">
+              Search
+            </Button>
+            <Button colorScheme="teal" onClick={onOpen}>
+              Need ideas?
+            </Button>
+          </HStack>
         </form>
       </Box>
     </Center>

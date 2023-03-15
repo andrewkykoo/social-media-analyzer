@@ -42,9 +42,9 @@ interface VideoInfo {
     tags: string[];
   };
   statistics?: {
-    viewCount: number;
-    likeCount: number;
-    commentCount: number;
+    viewCount: string;
+    likeCount: string;
+    commentCount: string;
   };
 }
 
@@ -62,7 +62,7 @@ const Media: React.FC<Props> = ({ video }) => {
         },
       });
       setSingleVideo(response.data.items[0]);
-      console.log(singleVideo);
+      console.log("single video info: ", singleVideo);
     };
     fetchVideoDetails();
   }, [video]);
@@ -138,7 +138,7 @@ const Media: React.FC<Props> = ({ video }) => {
                   </Tooltip>
                 </HStack>
                 <StatNumber>
-                  {statistics?.likeCount.toString() === "0" ? (
+                  {statistics?.likeCount === "0" ? (
                     <NotAllowedIcon />
                   ) : (
                     formatCount(statistics?.likeCount)
@@ -163,7 +163,7 @@ const Media: React.FC<Props> = ({ video }) => {
                   </Tooltip>
                 </HStack>
                 <StatNumber>
-                  {statistics?.commentCount.toString() === "0" ? (
+                  {statistics?.commentCount === "0" ? (
                     <NotAllowedIcon />
                   ) : (
                     formatCount(statistics?.commentCount)

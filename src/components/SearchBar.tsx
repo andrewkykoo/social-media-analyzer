@@ -9,8 +9,16 @@ import {
   Box,
   Center,
   HStack,
-  Text,
   useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Heading,
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import youtube from "./apis/youtube";
@@ -68,12 +76,27 @@ const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
             <Button colorScheme="gray" isLoading={isSubmitting} type="submit">
               Search
             </Button>
-            <Button colorScheme="teal" onClick={onOpen}>
-              Need ideas?
+            <Button colorScheme="navy" onClick={onOpen}>
+              Ask ChatGPT
             </Button>
           </HStack>
         </form>
       </Box>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>ASK ChatGPT</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text>ChatGPT Conversation</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="gray" mr={3} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Center>
   );
 };

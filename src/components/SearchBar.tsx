@@ -22,6 +22,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import youtube from "./apis/youtube";
+import ChatGPT from "./ChatGPT";
 
 type Inputs = {
   keywords: string;
@@ -62,22 +63,24 @@ const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
             <Input
               color="white"
               id="keywords"
-              placeholder="keywords"
+              placeholder="Enter keywords here"
               {...register("keywords", {
                 required: "This is required",
               })}
             />
-            <FormHelperText>e.g., Best restaurants in NYC</FormHelperText>
+            <FormHelperText color="gray">
+              e.g., Best restaurants in NYC
+            </FormHelperText>
             <FormErrorMessage>
               {errors.keywords && errors.keywords.message}
             </FormErrorMessage>
           </FormControl>
           <HStack mt={4}>
+            <Button colorScheme="black" onClick={onOpen}>
+              <Text as="u">Ask ChatGPT!</Text>
+            </Button>
             <Button colorScheme="gray" isLoading={isSubmitting} type="submit">
               Search
-            </Button>
-            <Button colorScheme="navy" onClick={onOpen}>
-              Ask ChatGPT
             </Button>
           </HStack>
         </form>
@@ -85,10 +88,10 @@ const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>ASK ChatGPT</ModalHeader>
+          <ModalHeader>ChatGPT by OpenAI</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text>ChatGPT Conversation</Text>
+            <ChatGPT />
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="gray" mr={3} onClick={onClose}>

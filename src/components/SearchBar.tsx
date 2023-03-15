@@ -8,6 +8,17 @@ import {
   FormHelperText,
   Box,
   Center,
+  HStack,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Heading,
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import youtube from "./apis/youtube";
@@ -27,6 +38,8 @@ const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
     register,
     formState: { errors, isSubmitting },
   } = useForm<Inputs>();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setKeywords(data.keywords);
@@ -59,16 +72,31 @@ const SearchBar: React.FC<Props> = ({ setKeywords, setVideos }) => {
               {errors.keywords && errors.keywords.message}
             </FormErrorMessage>
           </FormControl>
-          <Button
-            mt={4}
-            colorScheme="gray"
-            isLoading={isSubmitting}
-            type="submit"
-          >
-            Search
-          </Button>
+          <HStack mt={4}>
+            <Button colorScheme="gray" isLoading={isSubmitting} type="submit">
+              Search
+            </Button>
+            <Button colorScheme="navy" onClick={onOpen}>
+              Ask ChatGPT
+            </Button>
+          </HStack>
         </form>
       </Box>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>ASK ChatGPT</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text>ChatGPT Conversation</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="gray" mr={3} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Center>
   );
 };
